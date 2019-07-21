@@ -1,0 +1,17 @@
+body {
+  padding: 20px;
+  background-color:#ffffc9;  
+  text-align: center;
+}
+
+h1{
+  text-align: center;
+}
+button {
+  margin: .5rem 0;
+}
+#mymap{
+  width: 40%;
+  height: 300px;
+  margin-left: 30%;
+}
