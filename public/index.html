@@ -1,0 +1,39 @@
+<html>   
+    <head>
+        <title>Serverside Node.js</title>
+        <link href="main.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    </head>
+    <body>
+        <main>            
+             <h1>Server Side With Node.js</h1>
+             <p >Latitude: <span id="latitude"></span>&deg; <br /></p>
+             <p >Longtude: <span id="longitude"></span>&deg; <br /></p>
+        </main> 
+        <script>
+            if('geolocation' in navigator){
+                    console.log('Geolocation Avialiable')
+                    navigator.geolocation.getCurrentPosition(async postion => {
+                        const lat = postion.coords.latitude;
+                        const lon = postion.coords.longitude;
+                        document.getElementById('latitude').textContent = lat;
+                        document.getElementById('longitude').textContent = lon;
+                        console.log(postion);
+                        const data = { lat, lon};                        
+                        const options = {
+                            method: 'POST',
+                            header: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        };
+                        const response = await fetch('/api',options);
+                        const json = await response.json();
+                            console.log(json);                        
+                });
+            }else{
+                console.log('Geolocation not aviliable');
+            }
+        </script>       
+    </body>
+</html>
